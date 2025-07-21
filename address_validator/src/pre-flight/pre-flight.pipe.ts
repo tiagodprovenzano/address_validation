@@ -3,10 +3,11 @@ import { PreFlightService } from './pre-flight.service';
 import { ValidateAddressDto } from 'src/address/dtos/validate-address.dto';
 
 @Injectable()
-export class PreFlightPipe implements PipeTransform {
+export class PreFlightPipe
+  implements PipeTransform<ValidateAddressDto, string>
+{
   constructor(private readonly preFlightService: PreFlightService) {}
   transform(rawAddress: ValidateAddressDto) {
-    console.log('rawAddress', rawAddress);
     return this.preFlightService.validateAddress(rawAddress.address);
   }
 }

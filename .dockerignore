@@ -1,0 +1,10 @@
+# Ignore data directory used for training/testing (not needed in runtime image)
+address_validator/src/scripts/data
+address_validator/src/scripts/data/**
+# Ignore node modules from host (will be reinstalled in image)
+node_modules
+address_validator/node_modules
+# Ignore python virtual environments
+address_validator/venv
+# Ignore git stuff
+.git 

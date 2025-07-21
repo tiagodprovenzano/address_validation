@@ -1,0 +1,14 @@
+FROM rjurney/libpostal-docker:latest
+
+# Install FastAPI stack
+RUN pip install --no-cache-dir fastapi uvicorn[standard] pydantic
+
+# Application code lives in /app (already set in base image)
+WORKDIR /app
+
+# Copy (or allow mount) the parsing service script
+COPY scripts/parse_srv.py /app/parse_srv.py
+
+EXPOSE 5000
+
+CMD ["uvicorn", "parse_srv:app", "--host", "0.0.0.0", "--port", "5000"] 
