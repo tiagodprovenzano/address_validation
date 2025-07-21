@@ -99,3 +99,14 @@ docker compose up --build  # default prod profile
 Contributing
 ------------
 PRs welcome! Please run `npm run lint` and add/adjust unit tests.
+
+## Google Maps API Key
+Google Geocoding requests require a valid key. Create a free key in the Google Cloud Console (enable *Geocoding API*).  
+Store it in a local `.env` file **inside** the `address_validator/` directory so Docker can load it at runtime:
+
+```bash
+# address_validator/.env
+GOOGLE_MAPS_API_KEY=YOUR_REAL_KEY
+```
+
+> Tip: restrict the key to *Geocoding API* and the IP range you’ll run from to avoid unexpected usage.

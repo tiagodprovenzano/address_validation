@@ -9,7 +9,7 @@ services:
     environment:
       - LIBPOSTAL_URL=http://libpostal:5000/parse
       - OLLAMA_URL=http://ollama:11434
-      - GOOGLE_MAPS_API_KEY=AIzaSyDamfxUad6dJBs-V78oWmOsuIXmneZ4GaY
+      - GOOGLE_MAPS_API_KEY=${GOOGLE_MAPS_API_KEY}
     depends_on:
       - libpostal
       - ollama
@@ -27,7 +27,7 @@ services:
     environment:
       - LIBPOSTAL_URL=http://libpostal:5000/parse
       - OLLAMA_URL=http://ollama:11434
-      - GOOGLE_MAPS_API_KEY=AIzaSyDamfxUad6dJBs-V78oWmOsuIXmneZ4GaY
+      - GOOGLE_MAPS_API_KEY=${GOOGLE_MAPS_API_KEY}
     depends_on:
       - libpostal
       - ollama
