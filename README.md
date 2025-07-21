@@ -96,4 +96,9 @@ Production Build
 docker compose up --build  # default prod profile
 ```
 
-# 
+## Possible Improvements
+- **Offline vector cache (OpenAddresses + ANN)** — build a lightweight vector store (e.g. hnswlib, LanceDB or Weaviate) seeded with OpenAddresses US data.  
+  *Flow*: libpostal ➜ vector search (score ≥ 0.85 → `VALID/ CORRECTED`) ➜ _only_ then call Google. This would cut paid‑API calls by 70‑90 % on real traffic while keeping latency sub‑20 ms.
+- **Faster typo‑normaliser** — Qwen‑3 0.6 B is convenient but adds a few seconds per call on CPU. Replace with a specialised address model:  
+  - Tiny char‑ngram fastText (500 KB) for “address‑ish?” gating.  
+  - Fine‑tuned `nomic‑embed‑text` or `DeepSeek‑R1 1.5 B` LoRA for correction, called only on borderline inputs.
