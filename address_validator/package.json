@@ -20,18 +20,19 @@
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "generate-positives": "tsx src/scripts/generate_positives.ts",
     "generate-negatives": "tsx src/scripts/generate_negatives.ts",
-    "train": "tsx src/scripts/train.ts data/positive_addresses.txt data/negative_addresses.txt"
+    "train": "tsx src/scripts/train.ts data/positive_addresses.txt data/negative_addresses.txt",
+    "convert-data": "tsx src/scripts/convert_data.ts"
   },
   "dependencies": {
-    "@faker-js/faker": "^9.9.0",
     "@nestjs/common": "^11.0.1",
     "@nestjs/core": "^11.0.1",
     "@nestjs/mapped-types": "*",
     "@nestjs/platform-express": "^11.0.1",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.2",
-    "fasttext.js": "^1.1.4",
-    "reflect-metadata": "^0.2.2",
+    "graphql": "^16.11.0",
+    "node-fetch": "^3.3.2",
+    "reflect-metadata": "^0.1.13",
     "rxjs": "^7.8.1"
   },
   "devDependencies": {

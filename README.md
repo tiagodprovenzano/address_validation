@@ -96,6 +96,4 @@ Production Build
 docker compose up --build  # default prod profile
 ```
 
-Contributing
-------------
-PRs welcome! Please run `npm run lint` and add/adjust unit tests.
+# 

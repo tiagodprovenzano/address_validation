@@ -1,29 +1,36 @@
-version: "3.9"
-
 services:
   api:
+    profiles: ["prod"]
     build:
       context: .
+      dockerfile: Dockerfile
     ports:
       - "3000:3000"
     environment:
       - LIBPOSTAL_URL=http://libpostal:5000/parse
+      - OLLAMA_URL=http://ollama:11434
+      - GOOGLE_MAPS_API_KEY=AIzaSyDamfxUad6dJBs-V78oWmOsuIXmneZ4GaY
     depends_on:
       - libpostal
+      - ollama
 
   api-dev:
     profiles: ["dev"]
     build:
       context: .
-      target: dev
+      dockerfile: Dockerfile
     ports:
       - "3001:3000"
+    volumes:
+      - ./address_validator/src:/app/src
+    command: ["npm", "run", "dev"]
     environment:
       - LIBPOSTAL_URL=http://libpostal:5000/parse
-    volumes:
-      - ./address_validator:/app/address_validator
+      - OLLAMA_URL=http://ollama:11434
+      - GOOGLE_MAPS_API_KEY=AIzaSyDamfxUad6dJBs-V78oWmOsuIXmneZ4GaY
     depends_on:
       - libpostal
+      - ollama
 
   libpostal:
     build:
@@ -31,3 +38,14 @@ services:
       dockerfile: Dockerfile.libpostal
     volumes:
       - ./scripts/parse_srv.py:/app/parse_srv.py 
+
+  ollama:
+    image: ollama/ollama:latest
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+    entrypoint: ["/bin/sh", "-c", "ollama pull qwen3:0.6b && ollama serve"]
+
+volumes:
+  ollama_data: 
